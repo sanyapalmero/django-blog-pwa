@@ -3,11 +3,13 @@
 {% block title %}Блог{% endblock %}
 
 {% block content %}
-<h1>Блог</h1>
+
 <div>
     {% for post in object_list %}
         <div style="border: 1px solid black; margin: 5px;">
-            <div>{{ post.title }}</div>
+            <div>
+                <a href="{% url 'blog:post' pk=post.pk %}">{{ post.title }}</a>
+            </div>
             <div>{{ post.text|truncatechars:30 }}</div>
             <div>{{ post.published_at }}</div>
             <div>{{ post.author }}</div>
