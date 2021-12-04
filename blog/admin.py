@@ -1,3 +1,14 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Post
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'short_text', 'published_at', 'is_published', 'author')
+
+    def short_text(self, obj):
+        if obj.text:
+            return obj.text[:30] + '...'
+        else:
+            return ''
