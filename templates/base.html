@@ -5,19 +5,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    {% render_bundle 'main' 'css' %}
-
     <title>{% block title %}{% endblock %}</title>
+    {% render_bundle 'main' 'css' %}
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
+        <div class="container">
             <a class="navbar-brand" href="/">Блог</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
                 {% if request.user.is_authenticated %}
                     <div class="navbar-text ms-auto">{{ request.user.username }}</div>
                     <ul class="navbar-nav mb-2 mb-lg-0">
@@ -35,8 +33,9 @@
             </div>
         </div>
     </nav>
-    {% block content %}{% endblock %}
-
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
+    </div>
     {% render_bundle 'main' 'js' %}
 </body>
 </html>

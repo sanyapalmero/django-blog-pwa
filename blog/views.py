@@ -8,7 +8,7 @@ class HomeView(generic.ListView):
     template_name = 'blog/home.html'
     queryset = Post.objects.published_posts()
     ordering = ['-published_at']
-    paginate_by = 20
+    paginate_by = 10
 
 class PostView(generic.DetailView):
     template_name = 'blog/post.html'

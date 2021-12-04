@@ -5,7 +5,7 @@ from .models import Post
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'short_text', 'published_at', 'is_published', 'author')
+    list_display = ('id', 'title', 'title_2', 'short_text', 'published_at', 'is_published', 'author')
 
     def short_text(self, obj):
         if obj.text:

@@ -1,67 +1,60 @@
-const path = require('path')
-const WebpackBundleTracker = require('webpack-bundle-tracker')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
-
-const plugins = () => {
-    const base = [
-        new WebpackBundleTracker({
-            filename: './webpack-stats.json',
-        }),
-        new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin({
-            filename: '[name]-[fullhash:16].css'
-        }),
-    ]
-    return base
-}
-
-
-const cssloaders = (extra) => {
-    const loaders = [
-        {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-                publicPath: path.resolve(__dirname, 'static/dist')
-            },
-        },
-        'css-loader',
-    ]
-
-    if (extra) {
-        loaders.push(extra)
-    }
-
-    return loaders
-}
-
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const BundleTracker = require('./webpack-ext/bundler-tracker');
 
 module.exports = {
-    mode: 'development',
-    entry: {
-        main: './static/ts/main.ts',
-    },
-    output: {
-        path: path.resolve(__dirname, 'static/dist'),
-        filename: '[name]-[fullhash:16].js',
-        publicPath: '/static/dist/',
-    },
-    plugins: plugins(),
-    module: {
-        rules: [
+  mode: "development",
+  cache: false,
+  entry: {
+    'main': "./static/ts/main.ts",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.scss$|\.css$/,
+        use: [
             {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
+              loader: 'file-loader',
+              options: {
+                name: "[name]-[fullhash:16].css"
+              }
             },
+            'extract-loader',
+            "css-loader",
+            "resolve-url-loader",
             {
-                test: /\.s[ac]ss$/,
-                use: cssloaders('sass-loader')
+              loader: "sass-loader",
+              options: {
+                  sourceMap: true,
+              },
             },
-        ],
-    },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.scss', '.css', ],
-    }
-}
+        ]
+      },
+      {
+        test: /\.eot$|\.svg$|\.ttf$|\.woff$|\.woff2$|\.png$|\.gif$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: "[name]-[contenthash].[ext]"
+          }
+        },
+      }
+    ]
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new BundleTracker({ filename: './webpack-stats.json' }),
+  ],
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.scss', '.css']
+  },
+  output: {
+    filename: "[name]-[fullhash:16].js",
+    path: __dirname + "/static/dist/",
+    publicPath: '/static/dist/',
+  }
+};

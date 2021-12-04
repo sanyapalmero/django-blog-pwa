@@ -10,6 +10,7 @@ class BlogQuerySet(models.QuerySet):
 
 class Post(models.Model):
     title = models.CharField(max_length=255, verbose_name="Название")
+    title_2 = models.CharField(max_length=255, null=True, blank=True, verbose_name="Название 2")
     text = models.TextField(verbose_name="Текст")
     published_at = models.DateField(default=timezone.now, verbose_name="Дата публикации")
     is_published = models.BooleanField(default=False, verbose_name="Опубликовано")
