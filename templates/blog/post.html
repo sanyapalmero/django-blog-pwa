@@ -5,7 +5,7 @@
 
 {% block content %}
     <h2>{{ post.title_2 }}</h2>
-    <div>{{ post.text }}</div>
+    <div>{{ post.text|safe }}</div>
     <div class="mt-2">
         <small class="text-muted">{{ post.author }} {{ post.published_at }}</small>
     </div>

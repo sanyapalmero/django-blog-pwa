@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'webpack_loader',
+    'tinymce',
 
     'users',
     'blog'
@@ -142,14 +143,33 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': "silver",
+    "height": 500,
+    'relative_urls': False,
+    "plugins": (
+        "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
+        "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
+        "code,help,wordcount"
+    ),
+    'toolbar': (
+        "undo redo | "
+        "formatselect | "
+        "alignleft aligncenter alignright alignjustify alignnone | "
+        "backcolor forecolor bold italic underline strikethrough subscript superscript removeformat | "
+        "bullist numlist | "
+        "blockquote anchor hr media link table | "
+        "code fullscreen"
+    ),
+}
+
 
 try:
     from .local_settings import *
 except ImportError:
     pass
-
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
