@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'webpack_loader',
     'tinymce',
+    'pwa',
 
     'users',
     'blog'
@@ -169,6 +170,28 @@ TINYMCE_DEFAULT_CONFIG = {
     ),
 }
 
+PWA_APP_NAME = 'pwa'
+PWA_APP_DESCRIPTION = "Pwa description"
+PWA_APP_THEME_COLOR = '#0A0302'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/images/logo.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/images/logo.png',
+        'sizes': '160x160'
+    }
+]
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
 
 try:
     from .local_settings import *
