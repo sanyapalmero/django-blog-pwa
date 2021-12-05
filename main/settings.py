@@ -152,6 +152,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme': "silver",
     "height": 500,
     'relative_urls': False,
+    'images_upload_url': "/admin/blog/upload-image/",
     "plugins": (
         "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
         "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
@@ -163,7 +164,7 @@ TINYMCE_DEFAULT_CONFIG = {
         "alignleft aligncenter alignright alignjustify alignnone | "
         "backcolor forecolor bold italic underline strikethrough subscript superscript removeformat | "
         "bullist numlist | "
-        "blockquote anchor hr media link table | "
+        "blockquote anchor image media link table | "
         "code fullscreen"
     ),
 }
