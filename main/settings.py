@@ -159,6 +159,7 @@ TINYMCE_DEFAULT_CONFIG = {
         "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
         "code,help,wordcount"
     ),
+    'external_plugins': { 'tiny_mce_wiris': 'https://www.wiris.net/demo/plugins/tiny_mce/plugin.js' },
     'toolbar': (
         "undo redo | "
         "formatselect | "
@@ -166,7 +167,7 @@ TINYMCE_DEFAULT_CONFIG = {
         "backcolor forecolor bold italic underline strikethrough subscript superscript removeformat | "
         "bullist numlist | "
         "blockquote anchor image media link table | "
-        "code fullscreen"
+        "code | tiny_mce_wiris_formulaEditor | tiny_mce_wiris_formulaEditorChemistry | fullscreen"
     ),
 }
 
